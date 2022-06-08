@@ -70,7 +70,7 @@ export default function TextForm(props) {
         <div className="row">
           <div className="col-md-8 col-10 col-xxl-8 mx-auto">
             <div className="mb-3">
-              <h3 className="text-center">{props.heading}</h3>
+              <h3 className='text-center' style={{color:props.myMode==='light'?'#343434':'white'}} >{props.heading}</h3>
               <textarea
                 className="form-control"
                 id="textArea123"
@@ -78,6 +78,7 @@ export default function TextForm(props) {
                 onChange={handdleOnChange}
                 value={text}
                 placeholder="Enter your text here"
+                style={{backgroundColor:props.myMode==='light'?'white':'#343434',color:props.myMode==='light'?'#343434':'white'} }
               ></textarea>
             </div>
 
@@ -121,7 +122,7 @@ export default function TextForm(props) {
         </div>
       </div>
 
-      <div className="container my-5">
+      <div className="container my-5" style={{color:props.myMode==='light'?'#343434':'white'}}>
         <div className="row">
           <div className="col-md-6 col-10 col-xxl-6 mx-auto">
             <h3>Your text summary</h3>
@@ -131,7 +132,7 @@ export default function TextForm(props) {
             <p>{0.008 * text.split(" ").length} Minute for read</p>
 
             <h3>Preview</h3>
-            <p>{text}</p>
+            <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
           </div>
         </div>
       </div>

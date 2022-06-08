@@ -1,12 +1,14 @@
 import React from "react";
-import PropTypes from 'prop-types'
+import PropTypes from "prop-types";
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark">
+    <nav
+      className={`navbar navbar-expand-lg bg-${props.myMode} navbar-${props.myMode}`}
+    >
       <div className="container-fluid">
-        <a className="navbar-brand text-white" href="/">
-            {props.title}
+        <a className="navbar-brand" href="/">
+          {props.title}
         </a>
         <button
           className="navbar-toggler"
@@ -22,38 +24,52 @@ export default function Navbar(props) {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active text-white" aria-current="page" href="/">
+              <a className="nav-link active" aria-current="page" href="/">
                 Home
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active text-white" aria-current="page" href="/">
+              <a className="nav-link active" aria-current="page" href="/">
                 {props.aboutText}
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active text-white" aria-current="page" href="/">
+              <a className="nav-link active" aria-current="page" href="/">
                 Service
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link active text-white" aria-current="page" href="/">
+              <a className="nav-link active" aria-current="page" href="/">
                 Contact
               </a>
             </li>
+            
           </ul>
+          {/* SWITCH BUTTON */}
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              role="switch"
+              id="flexSwitchCheckDefault"
+              onClick={props.toggleMoodFunc}
+            />
+            <label className={`form-check-label text-${props.myMode==='light'?'dark':'light'}`} htmlFor="flexSwitchCheckDefault">
+            Enable Dark Mode
+            </label>
+          </div>
         </div>
       </div>
     </nav>
   );
 }
 
-Navbar.propTypes ={
-    title : PropTypes.string.isRequired,
-    aboutText: PropTypes.string
-}
+Navbar.propTypes = {
+  title: PropTypes.string.isRequired,
+  aboutText: PropTypes.string,
+};
 
 Navbar.defaultProps = {
-    title : "Set title here",
-    aboutText: "Set about here"
-}
+  title: "Set title here",
+  aboutText: "Set about here",
+};

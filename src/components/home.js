@@ -5,7 +5,7 @@ export default function home() {
     <>
       <div className="container">
         <div className="row">
-            <div className="col-md-6 col-10 col-xxl-6 mx-auto">
+            <div className="col-md-6 col-10 col-xxl-6 mx-auto text-center">
             <div>This is Home page</div>
             </div>
 

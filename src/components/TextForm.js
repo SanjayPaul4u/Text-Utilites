@@ -5,22 +5,37 @@ import { useState } from "react"; //📌📌📌
 export default function TextForm(props) {
   // UPPPERCASE 📌
   const handleUpperClick = () => {
-    // console.log("clicked on uppercase button ::::", text);
-    // console.log(text.toUpperCase());
-    // setText("You have click this upper case button");
-    setText(text.toUpperCase());
+    if (text.length !== 0) {
+      // console.log("clicked on uppercase button ::::", text);
+      // console.log(text.toUpperCase());
+      // setText("You have click this upper case button");
+      setText(text.toUpperCase());
+      props.showAlert("Text converted to the uppsercase!", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
   };
 
   // LOWERCASE 📌
   const handleLowerClick = () => {
-    const newText = text.toLowerCase();
-    setText(newText);
+    if (text.length !== 0) {
+      const newText = text.toLowerCase();
+      setText(newText);
+      props.showAlert("Text converted to the lowercase!", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
   };
 
   // CLEAR 📌
   const handleClearClick = () => {
-    const newText = "";
-    setText(newText);
+    if (text.length !== 0) {
+      const newText = "";
+      setText(newText);
+      props.showAlert("Text cleared !", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
   };
 
   // CAPITALIZE EACH WORD 📌
@@ -29,29 +44,41 @@ export default function TextForm(props) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
     });
   }
-  const handleCapitalizeEachWord= () => {
-    const newText = capitalizeEachWord(text);
-    setText(newText);
+  const handleCapitalizeEachWord = () => {
+    if (text.length !== 0) {
+      const newText = capitalizeEachWord(text);
+      setText(newText);
+      props.showAlert("All text is capitalized", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
   };
 
   // handleCopyTextFunc 📌
-  function handleCopyTextFunc(){
-    const textElement = document.getElementById('textArea123');
-    textElement.select();
-    navigator.clipboard.writeText(textElement.value);
+  function handleCopyTextFunc() {
+    if (text.length !== 0) {
+      const textElement = document.getElementById("textArea123");
+      textElement.select();
+      navigator.clipboard.writeText(textElement.value);
+      props.showAlert("Text copied !", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
   }
-  
-  // REMOVE EXTRA SPACES
-  function handleRemoveExtraSpace(){
-    const newText = text.split(/[ ]+/);
-    const anotherNewText = newText.join(" ");
-    console.log(newText);
-    console.log(anotherNewText);
-   
-    setText(anotherNewText);
-  }
-  
 
+  // REMOVE EXTRA SPACES
+  function handleRemoveExtraSpace() {
+    if (text.length !== 0) {
+      const newText = text.split(/[ ]+/);
+      const anotherNewText = newText.join(" ");
+      // console.log(newText);
+      // console.log(anotherNewText);
+      setText(anotherNewText);
+      props.showAlert("Removed extra spaces from the text !", "success");
+    } else {
+      props.showAlert("You have not any text in the text box", "danger");
+    }
+  }
 
   // ON CHANGE FUNCTION 📌
   const handdleOnChange = (event) => {
@@ -63,14 +90,20 @@ export default function TextForm(props) {
   // text = "this is another text"; // Wrong way to change the text
   // setText("this is another text"); // Wrong way to change the text
 
-  
   return (
     <>
       <div className="container my-5">
         <div className="row">
           <div className="col-md-8 col-10 col-xxl-8 mx-auto">
             <div className="mb-3">
-              <h3 className='text-center' style={{color:props.myMode==='light'?'#343434':'white'}} >{props.heading}</h3>
+              <h3
+                className="text-center"
+                style={{
+                  color: props.myMode === "light" ? "#343434" : "white",
+                }}
+              >
+                {props.heading}
+              </h3>
               <textarea
                 className="form-control"
                 id="textArea123"
@@ -78,7 +111,11 @@ export default function TextForm(props) {
                 onChange={handdleOnChange}
                 value={text}
                 placeholder="Enter your text here"
-                style={{backgroundColor:props.myMode==='light'?'white':'#343434',color:props.myMode==='light'?'#343434':'white'} }
+                style={{
+                  backgroundColor:
+                    props.myMode === "light" ? "white" : "#343434",
+                  color: props.myMode === "light" ? "#343434" : "white",
+                }}
               ></textarea>
             </div>
 
@@ -122,7 +159,10 @@ export default function TextForm(props) {
         </div>
       </div>
 
-      <div className="container my-5" style={{color:props.myMode==='light'?'#343434':'white'}}>
+      <div
+        className="container my-5"
+        style={{ color: props.myMode === "light" ? "#343434" : "white" }}
+      >
         <div className="row">
           <div className="col-md-6 col-10 col-xxl-6 mx-auto">
             <h3>Your text summary</h3>
@@ -132,7 +172,11 @@ export default function TextForm(props) {
             <p>{0.008 * text.split(" ").length} Minute for read</p>
 
             <h3>Preview</h3>
-            <p>{text.length>0?text:"Enter something in the textbox above to preview it here"}</p>
+            <p>
+              {text.length > 0
+                ? text
+                : "Enter something in the textbox above to preview it here"}
+            </p>
           </div>
         </div>
       </div>

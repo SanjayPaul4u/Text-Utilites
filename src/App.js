@@ -1,11 +1,11 @@
 import "./App.css";
 import Navbar from "./components/Navbar";
-import Services from "./components/Services";
+// import Services from "./components/Services";
 import TextForm from "./components/TextForm";
-import About from "./components/About";
+// import About from "./components/About";
 import Alert from "./components/Alert";
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, } from "react-router-dom";
+// import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   const [mode, setMode] = useState("light"); // wheather dark mood is enable or not
@@ -81,7 +81,8 @@ function App() {
       {/* <Home /> */}
       {/* <About /> */}
 
-      <BrowserRouter>
+      {/* 🔴🟠 ROUTING 🔴🟠 */}
+      {/* <BrowserRouter>
         <Navbar
           title="TextUtilites"
           aboutText="About Us"
@@ -92,12 +93,13 @@ function App() {
         />
         <Alert myAlert={alert} />
 
-        {/* 🔴🟠 ROUTING 🔴🟠 */}
+        
         <Routes>
           <Route exact path="/about" element={<About />} />
           <Route exact path="/services" element={<Services />} />
           <Route
-           exact path="/"
+            exact
+            path="/"
             element={
               <TextForm
                 heading="Enter the text for analize"
@@ -107,7 +109,22 @@ function App() {
             }
           />
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
+
+      <Navbar
+        title="TextUtilites"
+        aboutText="About Us"
+        myMode={mode}
+        toggleMoodFunc={toggleMood}
+        bluishToggleMoodFunc={bluishToggleMood}
+        greenishToggleMoodFunc={greenishToggleMood}
+      />
+      <Alert myAlert={alert} />
+      <TextForm
+        heading="Enter the text for analize"
+        myMode={mode}
+        showAlert={showAlert}
+      />
     </>
   );
 }

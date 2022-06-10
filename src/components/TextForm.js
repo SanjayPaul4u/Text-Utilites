@@ -3,6 +3,31 @@ import PropTypes from "prop-types";
 import { useState } from "react"; //📌📌📌
 
 export default function TextForm(props) {
+  // WORD COUNT 📌
+  const countWord = () => {
+    const textArr = text.split(" ");
+    let Wcount = 0;
+    textArr.forEach((element, index) => {
+      if (element !== "" && element !== "\n") {
+        Wcount++;
+      }
+    });
+    return Wcount;
+  };
+
+  // CHARACTER COUNT 📌
+  const countChar = () => {
+    const textArr = text.split("");
+    let chatCount =0;
+    textArr.forEach((e)=>{
+      if(e!==' '&& e!=='\n'){
+        chatCount++;
+      }
+    })
+    return chatCount;
+  };
+  
+
   // UPPPERCASE 📌
   const handleUpperClick = () => {
     if (text.length !== 0) {
@@ -90,6 +115,8 @@ export default function TextForm(props) {
   // text = "this is another text"; // Wrong way to change the text
   // setText("this is another text"); // Wrong way to change the text
 
+  
+
   return (
     <>
       <div className="container my-5">
@@ -120,37 +147,49 @@ export default function TextForm(props) {
             </div>
 
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleUpperClick}
             >
               UPPERCASE
             </button>
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleLowerClick}
             >
               lowercase
             </button>
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleClearClick}
             >
               Clear
             </button>
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleCapitalizeEachWord}
             >
               Capitalize Each Word
             </button>
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleCopyTextFunc}
             >
               Copy text
             </button>
             <button
-              className="btn btn-outline-info mx-2"
+              className={`btn btn-outline-${
+                props.myMode === "light" ? "primary" : props.myMode
+              } mx-2`}
               onClick={handleRemoveExtraSpace}
             >
               Remove Extra Space
@@ -167,9 +206,9 @@ export default function TextForm(props) {
           <div className="col-md-6 col-10 col-xxl-6 mx-auto">
             <h3>Your text summary</h3>
             <p>
-              {text.split(" ").length} words {text.length} characters
+              {countWord()} words {countChar()} characters
             </p>
-            <p>{0.008 * text.split(" ").length} Minute for read</p>
+            <p>{0.008 *countWord()} Minute for read</p>
 
             <h3>Preview</h3>
             <p>

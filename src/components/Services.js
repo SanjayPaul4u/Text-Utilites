@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function home() {
+export default function Services() {
   return (
     <>
       <div className="container">
         <div className="row">
             <div className="col-md-6 col-10 col-xxl-6 mx-auto text-center">
-            <div>This is Home page</div>
+            <div>This is Services page</div>
             </div>
 
             <div className="col-md-6 col-10 col-xxl-6 mx-auto">

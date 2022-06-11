@@ -1,16 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 
 export default function Navbar(props) {
+
+
   return (
     <nav
       className={`navbar navbar-expand-lg bg-${props.myMode} navbar-${props.myMode} px-5`}
     >
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">
+        <Link className="navbar-brand" to="/">
           {props.title}
-        </a>
+        </Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -22,30 +24,42 @@ export default function Navbar(props) {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
+
+        {/* MODE BUTTON STARTED */}
+        <div className="d-flex">
+          <div className="bg-primary rounded mx-2" onClick={()=>{props.toggleMoodFunc('primary')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-info rounded mx-2" onClick={()=>{props.toggleMoodFunc('info')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-danger rounded mx-2" onClick={()=>{props.toggleMoodFunc('danger')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-warning rounded mx-2" onClick={()=>{props.toggleMoodFunc('warning')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-success rounded mx-2" onClick={()=>{props.toggleMoodFunc('success')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-dark rounded mx-2" onClick={()=>{props.toggleMoodFunc('dark')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+          <div className="bg-light rounded mx-2" onClick={()=>{props.toggleMoodFunc('light')}} style={{height:'30px', width: '30px', cursor:'poiter'}}></div>
+        </div>
+        {/* MODE BUTTON END */}
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Home
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/about">
                 {props.aboutText}
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/services">
                 Service
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link active" aria-current="page" href="#">
+              <Link className="nav-link active" aria-current="page" to="/">
                 Contact
-              </a>
+              </Link>
             </li>
             {/* DROP DOWN MENU STARTED */}
-            <li className="nav-item dropstart">
+            {/* <li className="nav-item dropstart">
               <a
                 className="nav-link dropdown-toggle"
                 href="/"
@@ -67,15 +81,17 @@ export default function Navbar(props) {
                 className="dropdown-menu px-5"
                 aria-labelledby="navbarDropdown"
               >
-                <li>
+                <li> */}
                   {/* SWITCH BUTTON */}
-                  <div className="form-check form-switch">
+                  {/* <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       role="switch"
                       id="flexSwitchCheckDefault"
                       onClick={props.toggleMoodFunc}
+                      disabled = {props.myMode === 'info'|| props.myMode === 'success'}
+                      // checked = {props.myMode ==='dark'}
                     />
                     <label
                       className={`form-check-label text-${
@@ -87,15 +103,18 @@ export default function Navbar(props) {
                     </label>
                   </div>
                 </li>
-                <li>
+                <li> */}
                   {/* SWITCH BUTTON */}
-                  <div className="form-check form-switch">
+                  {/* <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       role="switch"
                       id="flexSwitchCheckDefault"
                       onClick={props.bluishToggleMoodFunc}
+                      disabled = {props.myMode === 'dark'|| props.myMode === 'success'}
+                      // checked = {props.myMode === 'info'}
+
                     />
                     <label
                       className={`form-check-label text-${
@@ -107,15 +126,20 @@ export default function Navbar(props) {
                     </label>
                   </div>
                 </li>
-                <li>
+                
+                <li> */}
                   {/* SWITCH BUTTON */}
-                  <div className="form-check form-switch">
+                  {/* <div className="form-check form-switch">
                     <input
                       className="form-check-input"
                       type="checkbox"
                       role="switch"
                       id="flexSwitchCheckDefault"
-                      onClick={props.greenishToggleMoodFunc}                
+                      onClick={props.greenishToggleMoodFunc}
+                      disabled = {props.myMode === 'dark'|| props.myMode === 'info'}
+                      // checked = {props.myMode === 'success'}                    
+
+
                     />
                     <label
                       className={`form-check-label text-${
@@ -128,9 +152,9 @@ export default function Navbar(props) {
                   </div>
                 </li>
 
-                {/* DROP-->END */}
               </ul>
-            </li>
+            </li> */}
+                {/* DROP-->END */}
           </ul>
         </div>
       </div>

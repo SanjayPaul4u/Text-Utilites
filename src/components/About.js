@@ -1,40 +1,23 @@
-import React, { useState } from "react";
+// import React, { useState } from "react";
 
-export default function About() {
+export default function About(props) {
   // 1> 📌📌📌 ENABLE DARK MOOD 📌📌📌
 
   // HERE WE USED TWO STATE 📌📌📌
-  const [aboutStyle, SetAboutStyle] = useState({
-    color: "#343434",
-    backgroundColor: "white",
-  });
-  const [btnText, setBtnText] = useState("Enable Dark Mood");
+ const aboutStyle = {
+  color: props.myMode === "dark"? "white":"#343434",
+  backgroundColor: props.myMode === "dark"? "#343434":"white"
+}
+ 
 
 
-  // TOGGLE STYLE FUNCTION 📌📌📌
-  const toggleStyle = () => {
-    if (aboutStyle.color === "white") {
-      SetAboutStyle({
-        color: "#343434",
-        backgroundColor: "white",
-      });
-      setBtnText("Enable Dark Mood")
-    } else {
-      SetAboutStyle({
-        color: "white",
-        backgroundColor: "#343434",
-        border:'1px solid black',
-        borderRadius: '5px'
-      });
-      setBtnText("Enable Light Mood")
-    }
-  };
+ 
 
   return (
     <>
       <section>  
         <div className="text-center my-5">
-          <h1>Abou page</h1>
+          <h1  style={{color: props.myMode === "dark"? "white":"#343434"}}>Abou page</h1>
           <hr className="w-25 mx-auto" />
         </div>
         <div className="container">
@@ -59,7 +42,7 @@ export default function About() {
                       aria-controls="panelsStayOpen-collapseOne"
                       style={aboutStyle}
                     >
-                      Accordion Item #1
+                      Analize Your Text
                     </button>
                   </h2>
                   <div
@@ -68,15 +51,7 @@ export default function About() {
                     aria-labelledby="panelsStayOpen-headingOne"
                   >
                     <div className="accordion-body">
-                      <strong>This is the first item's accordion body.</strong>{" "}
-                      It is shown by default, until the collapse plugin adds the
-                      appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as
-                      the showing and hiding via CSS transitions. You can modify
-                      any of this with custom CSS or overriding our default
-                      variables. It's also worth noting that just about any HTML
-                      can go within the <code>.accordion-body</code>, though the
-                      transition does limit overflow.
+                    Text Utilites give you a way to analize your text quality quickly and aficiently. Be it word count, character count or 
                     </div>
                   </div>
                 </div>
@@ -94,7 +69,7 @@ export default function About() {
                       aria-controls="panelsStayOpen-collapseTwo"
                       style={aboutStyle}
                     >
-                      Accordion Item #2
+                      Free To Use
                     </button>
                   </h2>
                   <div
@@ -103,15 +78,7 @@ export default function About() {
                     aria-labelledby="panelsStayOpen-headingTwo"
                   >
                     <div className="accordion-body">
-                      <strong>This is the second item's accordion body.</strong>{" "}
-                      It is hidden by default, until the collapse plugin adds
-                      the appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as
-                      the showing and hiding via CSS transitions. You can modify
-                      any of this with custom CSS or overriding our default
-                      variables. It's also worth noting that just about any HTML
-                      can go within the <code>.accordion-body</code>, though the
-                      transition does limit overflow.
+                    Text Utilites is a free character counter tool that provide instant character count and word count statistic for a given text. Text Utilites reports the number of word and characters. Thus it is suitable for writing text with word/ character.
                     </div>
                   </div>
                 </div>
@@ -129,7 +96,7 @@ export default function About() {
                       aria-controls="panelsStayOpen-collapseThree"
                       style={aboutStyle}
                     >
-                      Accordion Item #3
+                      Brouser Compatible
                     </button>
                   </h2>
                   <div
@@ -138,25 +105,9 @@ export default function About() {
                     aria-labelledby="panelsStayOpen-headingThree"
                   >
                     <div className="accordion-body">
-                      <strong>This is the third item's accordion body.</strong>{" "}
-                      It is hidden by default, until the collapse plugin adds
-                      the appropriate classes that we use to style each element.
-                      These classes control the overall appearance, as well as
-                      the showing and hiding via CSS transitions. You can modify
-                      any of this with custom CSS or overriding our default
-                      variables. It's also worth noting that just about any HTML
-                      can go within the <code>.accordion-body</code>, though the
-                      transition does limit overflow.
+                      This word counter software works in any web browsers such as chrome, FireFox, Interner Explorer, Safari, Opera. It suits to count characters in facebook, blog, books, excel document, essays, etc.
                     </div>
                   </div>
-                </div>
-                <div className="my-5">
-                  <button
-                    onClick={toggleStyle}
-                    className="btn btn-primary"
-                  >
-                    {btnText}
-                  </button>
                 </div>
               </div>
             </div>

@@ -6,61 +6,44 @@ export default function TextForm(props) {
   // WORD COUNT 📌
   const countWord = () => {
     const textArr = text.split(" ");
-    let Wcount = 0;
-    textArr.forEach((element, index) => {
-      if (element !== "" && element !== "\n") {
-        Wcount++;
-      }
+    const filterArr = textArr.filter((element) => {
+      return element.length !== 0;
     });
-    return Wcount;
+    return filterArr.length;
   };
 
   // CHARACTER COUNT 📌
   const countChar = () => {
-    const textArr = text.split("");
-    let chatCount =0;
-    textArr.forEach((e)=>{
-      if(e!==' '&& e!=='\n'){
-        chatCount++;
-      }
-    })
-    return chatCount;
+    const textArr = text.split(" ");
+    const filterArr = textArr.filter((element) => {
+      return element.length !== 0;
+    });
+    filterArr.forEach((e) => {
+      console.log("the element is : ", e);
+    });
   };
-  
 
   // UPPPERCASE 📌
   const handleUpperClick = () => {
-    if (text.length !== 0) {
-      // console.log("clicked on uppercase button ::::", text);
-      // console.log(text.toUpperCase());
-      // setText("You have click this upper case button");
-      setText(text.toUpperCase());
-      props.showAlert("Text converted to the uppsercase!", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    // console.log("clicked on uppercase button ::::", text);
+    // console.log(text.toUpperCase());
+    // setText("You have click this upper case button");
+    setText(text.toUpperCase());
+    props.showAlert("Text converted to the uppsercase!", "success");
   };
 
   // LOWERCASE 📌
   const handleLowerClick = () => {
-    if (text.length !== 0) {
-      const newText = text.toLowerCase();
-      setText(newText);
-      props.showAlert("Text converted to the lowercase!", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    const newText = text.toLowerCase();
+    setText(newText);
+    props.showAlert("Text converted to the lowercase!", "success");
   };
 
   // CLEAR 📌
   const handleClearClick = () => {
-    if (text.length !== 0) {
-      const newText = "";
-      setText(newText);
-      props.showAlert("Text cleared !", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    const newText = "";
+    setText(newText);
+    props.showAlert("Text cleared !", "success");
   };
 
   // CAPITALIZE EACH WORD 📌
@@ -70,39 +53,28 @@ export default function TextForm(props) {
     });
   }
   const handleCapitalizeEachWord = () => {
-    if (text.length !== 0) {
-      const newText = capitalizeEachWord(text);
-      setText(newText);
-      props.showAlert("All text is capitalized", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    const newText = capitalizeEachWord(text);
+    setText(newText);
+    props.showAlert("All text is capitalized", "success");
   };
 
   // handleCopyTextFunc 📌
   function handleCopyTextFunc() {
-    if (text.length !== 0) {
-      const textElement = document.getElementById("textArea123");
-      textElement.select();
-      navigator.clipboard.writeText(textElement.value);
-      props.showAlert("Text copied !", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    const textElement = document.getElementById("textArea123");
+    textElement.select();
+    navigator.clipboard.writeText(textElement.value);
+    document.getSelection().removeAllRanges();
+    props.showAlert("Text copied !", "success");
   }
 
   // REMOVE EXTRA SPACES
   function handleRemoveExtraSpace() {
-    if (text.length !== 0) {
-      const newText = text.split(/[ ]+/);
-      const anotherNewText = newText.join(" ");
-      // console.log(newText);
-      // console.log(anotherNewText);
-      setText(anotherNewText);
-      props.showAlert("Removed extra spaces from the text !", "success");
-    } else {
-      props.showAlert("You have not any text in the text box", "danger");
-    }
+    const newText = text.split(/[ ]+/);
+    const anotherNewText = newText.join(" ");
+    // console.log(newText);
+    // console.log(anotherNewText);
+    setText(anotherNewText);
+    props.showAlert("Removed extra spaces from the text !", "success");
   }
 
   // ON CHANGE FUNCTION 📌
@@ -115,8 +87,6 @@ export default function TextForm(props) {
   // text = "this is another text"; // Wrong way to change the text
   // setText("this is another text"); // Wrong way to change the text
 
-  
-
   return (
     <>
       <div className="container my-5">
@@ -124,7 +94,7 @@ export default function TextForm(props) {
           <div className="col-md-8 col-10 col-xxl-8 mx-auto">
             <div className="mb-3">
               <h3
-                className="text-center"
+                className="text-center mb-3"
                 style={{
                   color: props.myMode === "light" ? "#343434" : "white",
                 }}
@@ -147,49 +117,55 @@ export default function TextForm(props) {
             </div>
 
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleUpperClick}
             >
               UPPERCASE
             </button>
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleLowerClick}
             >
               lowercase
             </button>
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleClearClick}
             >
               Clear
             </button>
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleCapitalizeEachWord}
             >
               Capitalize Each Word
             </button>
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleCopyTextFunc}
             >
               Copy text
             </button>
             <button
+              disabled={text.length === 0}
               className={`btn btn-outline-${
                 props.myMode === "light" ? "primary" : props.myMode
-              } mx-2`}
+              } mx-2 my-2`}
               onClick={handleRemoveExtraSpace}
             >
               Remove Extra Space
@@ -199,7 +175,7 @@ export default function TextForm(props) {
       </div>
 
       <div
-        className="container my-5"
+        className="container my-5 "
         style={{ color: props.myMode === "light" ? "#343434" : "white" }}
       >
         <div className="row">
@@ -208,13 +184,13 @@ export default function TextForm(props) {
             <p>
               {countWord()} words {countChar()} characters
             </p>
-            <p>{0.008 *countWord()} Minute for read</p>
+            <p>{0.008 * countWord()} Minute for read</p>
 
             <h3>Preview</h3>
             <p>
               {text.length > 0
                 ? text
-                : "Enter something in the textbox above to preview it here"}
+                : "Nothing to preview"}
             </p>
           </div>
         </div>
